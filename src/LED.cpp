@@ -1,9 +1,7 @@
 #include "LED.hpp"
 #include <iostream>
 
-LED_Blinker::LED::LED() : m_State(false) {
-    std::cout << "LED is created and initialized to OFF state." << std::endl;
-};
+LED_Blinker::LED::LED() : m_State(false) {};
 
 void LED_Blinker::LED::toggleOn()
 {

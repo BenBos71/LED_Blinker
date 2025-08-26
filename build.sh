@@ -4,7 +4,7 @@ echo "Building LED_Blinker..."
 
 cd build
 
-make ..
+make
 
 cd ..
 

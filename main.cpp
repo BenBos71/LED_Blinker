@@ -1,14 +1,34 @@
 #include <iostream>
+#include <chrono>
 
 #include "LED.hpp"
 #include "Blinker.hpp"
 
+using namespace std;
+using namespace chrono;
+using namespace LED_Blinker;
+
 int main()
 {
-    LED_Blinker::LED led;
-    LED_Blinker::Blinker blinker(led);
+    LED led;
+    Blinker blinker(led);
+    short interval;
+
+    cout << "What blink interval (in ms) do you want to set? ";
+    cin >> interval;
     
-    blinker.setBlinkInterval(500); // Set blink interval to 500 ms
-    blinker.toggleLED(); // Toggle LED state
-    blinker.toggleLED(); // Toggle LED state again
+    blinker.setBlinkInterval((milliseconds)interval);
+
+    auto start = high_resolution_clock::now();
+
+    while (true)
+    {
+        if (blinker.checkBlinkInterval((milliseconds)interval, start))
+        {
+            start = high_resolution_clock::now();
+            cout << "[" << duration_cast<milliseconds>(start.time_since_epoch()).count() << "]";
+            blinker.toggleLED();
+        }
+    }
+
 }
