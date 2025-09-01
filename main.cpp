@@ -13,6 +13,7 @@ int main()
     LED led;
     Blinker blinker(led);
     short interval;
+    short blinks = 0;
 
     cout << "What blink interval (in ms) do you want to set? ";
     cin >> interval;
@@ -21,13 +22,14 @@ int main()
 
     auto start = high_resolution_clock::now();
 
-    while (true)
+    while (blinks < 10)
     {
         if (blinker.checkBlinkInterval((milliseconds)interval, start))
         {
             start = high_resolution_clock::now();
             cout << "[" << duration_cast<milliseconds>(start.time_since_epoch()).count() << "]";
             blinker.toggleLED();
+            blinks++;
         }
     }
 

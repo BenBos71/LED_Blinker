@@ -21,5 +21,5 @@ void LED_Blinker::Blinker::toggleLED()
 
 bool LED_Blinker::Blinker::checkBlinkInterval(milliseconds a_intervalMs, steady_clock::time_point a_intervalStart) const
 {
-    return high_resolution_clock::now() - a_intervalStart == a_intervalMs;
+    return high_resolution_clock::now() - a_intervalStart >= a_intervalMs;
 };
